@@ -1,4 +1,4 @@
-# ha I made this myself soo gudafdafdafsd
+# PUT WEBHOOK URL ON LINE 29
 from discord_webhook import DiscordWebhook
 
 import random
@@ -26,7 +26,7 @@ def main(lastFrame, frames):
             #print(data)
             if data["success"] == True:
                 print('Valid Game Pin: ' + random_numbers)
-                webhook = DiscordWebhook(url='https://discord.com/api/webhooks/975473376552452226/Pz9eOV76NGkO9fmD0cJfF_2BWPx8cMcX5BkbE4qJs-qpc9Gcmjxr5jm1tCjUNbtlFFxp', rate_limit_retry=True,
+                webhook = DiscordWebhook(url='Your webhook URL here', rate_limit_retry=True,
                          content='Valid Game Pin: ' + random_numbers)
                 webhook.execute()
             else:
