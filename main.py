@@ -1,21 +1,20 @@
-# PUT WEBHOOK URL ON LINE 29
+# CONFIG AREA BELOW
+useWebhook = True # Use a discord webhook or not, if yes, fill in the line below
+webhook = 'Your discord webhook url'
+thread_amount = 25 # How many threads to use? Put it below 10 if using on your home computer. 25 max (also fastest)
+logInvalids = False # Don't enable unless you want to have your console spammed (does not send to discord)
+# Config area end, do not edit below code
+
 from discord_webhook import DiscordWebhook
 
 import random
 import requests
 import threading
 
-thread_amount = 25
-frames = ['|','\\','—', '/']
-lastFrame = 0
-def main(lastFrame, frames):
+
+def main():
     while 1:
         for _ in range(10000):
-            #print ("\033[A                             \033[A")
-            #print(frames[lastFrame])
-            #lastFrame += 1
-            #if lastFrame == 4:
-            #    lastFrame = 0
             random_numbers = str(random.randint(100000, 999999))
             try:
                 response = requests.get(
@@ -23,22 +22,22 @@ def main(lastFrame, frames):
                 data = response.json()
             except Exception as e:
                 print('Something went wrong: '+e)
-            #print(data)
-            if data["success"] == True:
+            if data["success"]:
                 print('Valid Game Pin: ' + random_numbers)
-                webhook = DiscordWebhook(url='Your webhook URL here', rate_limit_retry=True,
-                         content='Valid Game Pin: ' + random_numbers)
-                webhook.execute()
+                if useWebhook:
+                    webhook = DiscordWebhook(url=webhook, rate_limit_retry=True,
+                             content='Valid Game Pin: ' + random_numbers)
+                    webhook.execute()
             else:
-                pass
-                #print('Invalid Game Pin: ' + random_numbers)
+                if logInvalids:
+                    print('Invalid Game Pin: ' + random_numbers)
 
 
 if __name__ == "__main__":
     threads = list()
 
     for index in range(thread_amount):
-        _ = threading.Thread(target=main, args=(lastFrame, frames))
+        _ = threading.Thread(target=main)
 
         threads.append(_)
 
