@@ -9,7 +9,7 @@ This is a blooket game finder that works right now! There are many older version
    
 **In case you are intrested, the api url is `https://fb.blooket.com/c/firebase/id?id=` where you put your 6 dight game code after `id=`**  
 
-To use the finder, put your webhook url in main.py and run main.py! You can edit the number of threads used to find codes in main.py! I find that over 50 threads the codes per second is similar. On replit (where I run this), I am using 25 threads with `2 vCPU` (hacker plan default).      
+To use the finder, look at the config in main.py and run main.py! You can edit the number of threads used to find codes in main.py! I find that over 50 threads the codes per second is similar. On replit (where I run this), I am using 25 threads with `2 vCPU` (hacker plan default).      
 
 This is not the fastest finder, but it is very simple! *~7 codes per minute using 25 threads*
 
